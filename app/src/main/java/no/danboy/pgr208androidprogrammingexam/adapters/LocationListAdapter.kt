@@ -11,8 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import no.danboy.pgr208androidprogrammingexam.R
 import no.danboy.pgr208androidprogrammingexam.activities.LocationDetails
-import no.danboy.pgr208androidprogrammingexam.activities.MainActivity
-import no.danboy.pgr208androidprogrammingexam.activities.page4
+import no.danboy.pgr208androidprogrammingexam.activities.GoogleMapsActivity
 import no.danboy.pgr208androidprogrammingexam.model.Location
 
 class LocationListAdapter(private val locationList: ArrayList<Location>,
@@ -48,17 +47,21 @@ class LocationListAdapter(private val locationList: ArrayList<Location>,
         fun bindView(location: Location){
             placeName.text = location.name
 
-            // need to add link to page 3 here
+            // Adding link to LocationDetails page here and sending data
             card.setOnClickListener{
                 var intent = Intent(context, LocationDetails::class.java)
                 intent.putExtra("name", location.name)
                 intent.putExtra("link", location.detailsLink)
+                intent.putExtra("longitude", location.longitude)
+                intent.putExtra("latitude", location.latitude)
                 context.startActivity(intent)
             }
 
-            // need to add link to page 4 here
+            // Adding link to GoogleMapsActivity page here and sending data
             pinBtn.setOnClickListener{
-                var intent = Intent(context, page4::class.java)
+                var intent = Intent(context, GoogleMapsActivity::class.java)
+                intent.putExtra("longitude", location.longitude)
+                intent.putExtra("latitude", location.latitude)
                 context.startActivity(intent)
 
 

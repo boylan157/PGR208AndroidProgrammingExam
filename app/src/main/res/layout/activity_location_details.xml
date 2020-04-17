@@ -10,20 +10,19 @@
         android:id="@+id/imageBanner"
         android:layout_width="378dp"
         android:layout_height="224dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/locationName"
-        app:srcCompat="@drawable/ic_launcher_background" />
+         />
 
     <TextView
         android:id="@+id/locationName"
         android:layout_width="361dp"
         android:layout_height="82dp"
-        android:paddingLeft="30dp"
         android:gravity="center_horizontal"
-        android:text="Hergopol Accesorios Nauticos y Pesca"
+        android:paddingLeft="30dp"
+        android:text="Location Name"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,19 +37,36 @@
         android:layout_width="50dp"
         android:layout_height="55dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/ic_location_on_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/commentText"
-        android:layout_width="392dp"
-        android:layout_height="223dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:text="commentText"
-        android:textSize="18sp"
+    <ScrollView
+        android:layout_width="406dp"
+        android:layout_height="264dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageBanner" />
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageBanner"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/commentText"
+                android:layout_width="379dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:gravity="center_horizontal"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

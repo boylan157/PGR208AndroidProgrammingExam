@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
-    tools:context=".activities.page4">
+    tools:context=".activities.GoogleMapsActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="254dp"
-        android:layout_height="294dp"
-        android:layout_marginStart="76dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+    <fragment
+
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

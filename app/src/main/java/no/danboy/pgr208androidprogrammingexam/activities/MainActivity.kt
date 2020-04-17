@@ -37,10 +37,6 @@ class MainActivity : AppCompatActivity() {
 
         locationList = ArrayList<Location>()
 
-        //Setting up recyclerView
-
-
-
 
         // Getting Json
         volleyRequest = Volley.newRequestQueue(this)
@@ -115,9 +111,3 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-
-
-
-
-
-//class Geometry
