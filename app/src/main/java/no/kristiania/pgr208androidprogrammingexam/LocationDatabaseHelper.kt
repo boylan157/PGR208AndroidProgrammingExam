@@ -11,11 +11,12 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
 
 
     override fun onCreate(db: SQLiteDatabase?) {
-        var CREATE_LOCATION_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
+        var CREATE_LOCATION_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " LONG PRIMARY KEY," +
                                             KEY_LOCATION_NAME + " TEXT," +
                                             KEY_LOCATION_LONGITUDE + " DOUBLE," +
                                             KEY_LOCATION_LATITUDE + " DOUBLE," +
                                             KEY_LOCATION_DETAILSLINK + " TEXT)"
+
 
         db?.execSQL(CREATE_LOCATION_TABLE)
     }
@@ -39,12 +40,13 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
         values.put(KEY_LOCATION_LATITUDE, location.latitude)
         values.put(KEY_LOCATION_DETAILSLINK, location.detailsLink)
 
-        db.insert(TABLE_NAME, null, values)
+
+        db.insert(TABLE_NAME,null, values)
         db.close()
     }
 
     //READ
-    fun readALocation(id: Int): Location {
+    fun readALocation(id: Long): Location {
         var db: SQLiteDatabase = writableDatabase
 
         // cursor is for reading from database, it knows how to fetch data
@@ -75,7 +77,9 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
         location.latitude = cursor.getDouble(cursor.getColumnIndex(KEY_LOCATION_LATITUDE))
         location.detailsLink = cursor.getString(cursor.getColumnIndex(KEY_LOCATION_DETAILSLINK))
 
+        cursor.close()
         return location
+
     }
 
     fun readLocations(): ArrayList<Location>{
@@ -99,6 +103,7 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
 
             } while (cursor.moveToNext())
         }
+        cursor.close()
         return list
     }
 
@@ -126,13 +131,19 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
         db.close()
     }
 
+
     fun getLocationsCount(): Int{
         var db: SQLiteDatabase = readableDatabase
         var countQuery = "SELECT * FROM $TABLE_NAME"
         var cursor: Cursor = db.rawQuery(countQuery, null)
 
+        cursor.close()
         return cursor.count
     }
+
+
+
+
 }
 
 

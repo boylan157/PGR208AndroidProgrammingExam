@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     var locationAdapter: LocationListAdapter? = null
     var layoutManager: RecyclerView.LayoutManager? = null
     var dbHandler: LocationDatabaseHelper? = null
+    var testList: ArrayList<Location>? = null
+    var i = 0
 
 
 
@@ -49,15 +51,20 @@ class MainActivity : AppCompatActivity() {
         // Getting Json
         volleyRequest = Volley.newRequestQueue(this)
 
-
-        fetchJson(url)
-
         dbHandler = LocationDatabaseHelper(this)
+
+        testList = dbHandler!!.readLocations()
+        //Only run if data isnt loaded into list
+        if(testList.isNullOrEmpty()) {
+            fetchJson(url)
+        }
+
+
+
 
 
         // Inserting locations
         locationList = dbHandler!!.readLocations()
-        var testList: ArrayList<Location> = dbHandler!!.readLocations()
 
         for (l in locationList!!)
             println(l.name)
@@ -110,9 +117,7 @@ class MainActivity : AppCompatActivity() {
 
                             //Save locations to database
 
-                            //saveToDB(location)
-
-
+                            saveToDB(location)
                         }
                     }
                 } catch (e: JSONException){
