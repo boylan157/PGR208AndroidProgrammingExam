@@ -1,11 +1,10 @@
-package no.danboy.pgr208androidprogrammingexam.activities
+package no.kristiania.pgr208androidprogrammingexam.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -13,9 +12,8 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_location_details.*
-import no.danboy.pgr208androidprogrammingexam.R
+import no.kristiania.pgr208androidprogrammingexam.R
 import org.json.JSONException
 
 class LocationDetails : AppCompatActivity() {

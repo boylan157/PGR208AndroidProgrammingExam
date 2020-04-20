@@ -1,10 +1,10 @@
-package no.danboy.pgr208androidprogrammingexam.activities
+package no.kristiania.pgr208androidprogrammingexam.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import no.danboy.pgr208androidprogrammingexam.R
+import no.kristiania.pgr208androidprogrammingexam.R
 
 class SplashScreen : AppCompatActivity() {
 
@@ -13,6 +13,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        // Creating splash screen
         handler = Handler()
         handler.postDelayed({
 

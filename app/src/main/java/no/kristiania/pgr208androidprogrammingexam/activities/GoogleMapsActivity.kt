@@ -1,13 +1,12 @@
-package no.danboy.pgr208androidprogrammingexam.activities
+package no.kristiania.pgr208androidprogrammingexam.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.CameraUpdateFactory.*
 
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import no.danboy.pgr208androidprogrammingexam.R
+import no.kristiania.pgr208androidprogrammingexam.R
 
 class GoogleMapsActivity : AppCompatActivity() {
 

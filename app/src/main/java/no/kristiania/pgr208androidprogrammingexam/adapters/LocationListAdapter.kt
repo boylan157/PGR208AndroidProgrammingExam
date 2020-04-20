@@ -1,4 +1,4 @@
-package no.danboy.pgr208androidprogrammingexam.adapters
+package no.kristiania.pgr208androidprogrammingexam.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -9,10 +9,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import no.danboy.pgr208androidprogrammingexam.R
-import no.danboy.pgr208androidprogrammingexam.activities.LocationDetails
-import no.danboy.pgr208androidprogrammingexam.activities.GoogleMapsActivity
-import no.danboy.pgr208androidprogrammingexam.model.Location
+import no.kristiania.pgr208androidprogrammingexam.R
+import no.kristiania.pgr208androidprogrammingexam.activities.LocationDetails
+import no.kristiania.pgr208androidprogrammingexam.activities.GoogleMapsActivity
+import no.kristiania.pgr208androidprogrammingexam.model.Location
 
 class LocationListAdapter(private val locationList: ArrayList<Location>,
                           private val context: Context): RecyclerView.Adapter<LocationListAdapter.ViewHolder>() {
@@ -37,7 +37,7 @@ class LocationListAdapter(private val locationList: ArrayList<Location>,
     }
 
     // fetches widgets
-    inner class ViewHolder(val v: View): RecyclerView.ViewHolder(v){
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         var placeName = itemView.findViewById<TextView>(R.id.placeName)
         var pinBtn = itemView.findViewById<Button>(R.id.mapBtn)

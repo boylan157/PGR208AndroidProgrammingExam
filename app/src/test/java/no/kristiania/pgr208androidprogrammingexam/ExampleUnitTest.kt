@@ -1,4 +1,4 @@
-package no.danboy.pgr208androidprogrammingexam
+package no.kristiania.pgr208androidprogrammingexam
 
 import org.junit.Test
 
