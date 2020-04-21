@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PGR208AndroidProgrammingExam</string>
     <string name="search_text">Search...</string>
+    <string name="search">Search</string>
 </resources>

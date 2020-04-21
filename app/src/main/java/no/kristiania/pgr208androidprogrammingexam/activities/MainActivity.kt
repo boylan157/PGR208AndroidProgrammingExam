@@ -2,6 +2,7 @@ package no.kristiania.pgr208androidprogrammingexam.activities
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,13 +30,12 @@ class MainActivity : AppCompatActivity() {
 
     // Declarations
     var volleyRequest: RequestQueue? = null
-    val url = "https://www.noforeignland.com/home/api/v1/places"
+    private val url = "https://www.noforeignland.com/home/api/v1/places"
     var locationList: ArrayList<Location>? = null
     var locationAdapter: LocationListAdapter? = null
     var layoutManager: RecyclerView.LayoutManager? = null
     var dbHandler: LocationDatabaseHelper? = null
     var testList: ArrayList<Location>? = null
-    var i = 0
 
 
 
@@ -47,27 +47,35 @@ class MainActivity : AppCompatActivity() {
 
         locationList = ArrayList<Location>()
 
-
         // Getting Json
         volleyRequest = Volley.newRequestQueue(this)
 
         dbHandler = LocationDatabaseHelper(this)
 
         testList = dbHandler!!.readLocations()
-        //Only run if data isnt loaded into list
+
+
+        //Makes sure fetchjson only will be called once
         if(testList.isNullOrEmpty()) {
             fetchJson(url)
         }
 
 
-
-
-
         // Inserting locations
         locationList = dbHandler!!.readLocations()
 
-        for (l in locationList!!)
-            println(l.name)
+        location_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                locationAdapter!!.filter.filter(newText)
+                return false
+            }
+
+        })
+
 
 
         locationAdapter = LocationListAdapter(locationList!!, this)
@@ -78,12 +86,15 @@ class MainActivity : AppCompatActivity() {
 
         locationAdapter!!.notifyDataSetChanged()
 
+
+
+
     }
 
 
 
     // Fetching Json properties
-    fun fetchJson(url: String){
+    private fun fetchJson(url: String){
         val jsonObjectReq = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener {
@@ -127,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         Response.ErrorListener {
             error: VolleyError ->
             try {
-                println("Error: " + error.toString())
+                println("Error: $error")
             } catch (e: JSONException){
                 e.printStackTrace()
             }
@@ -138,7 +149,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun saveToDB(location: Location){
+    private fun saveToDB(location: Location){
         dbHandler!!.createLocation(location)
     }
 

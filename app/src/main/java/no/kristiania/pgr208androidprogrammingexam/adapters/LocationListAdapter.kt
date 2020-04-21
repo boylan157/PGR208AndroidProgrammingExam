@@ -6,16 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.analytics.FirebaseAnalytics
 import no.kristiania.pgr208androidprogrammingexam.R
 import no.kristiania.pgr208androidprogrammingexam.activities.LocationDetails
 import no.kristiania.pgr208androidprogrammingexam.activities.GoogleMapsActivity
 import no.kristiania.pgr208androidprogrammingexam.model.Location
+import java.util.*
+import kotlin.collections.ArrayList
 
 class LocationListAdapter(private val locationList: ArrayList<Location>,
-                          private val context: Context): RecyclerView.Adapter<LocationListAdapter.ViewHolder>() {
+                          private val context: Context): RecyclerView.Adapter<LocationListAdapter.ViewHolder>(), Filterable {
+
+    var locationFilterList = ArrayList<Location>()
+
+    init {
+        locationFilterList = locationList
+    }
 
 
     // Getting the view
@@ -28,12 +39,12 @@ class LocationListAdapter(private val locationList: ArrayList<Location>,
 
     // item count
     override fun getItemCount(): Int {
-        return locationList.size
+        return locationFilterList.size
     }
 
     // Dynamically changes the view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(locationList[position])
+        holder.bindView(locationFilterList[position])
     }
 
     // fetches widgets
@@ -67,8 +78,37 @@ class LocationListAdapter(private val locationList: ArrayList<Location>,
 
             }
         }
+
+
     }
 
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    locationFilterList = locationList
+                } else {
+                    val resultList = ArrayList<Location>()
+                    for (row in locationList) {
+                        if (row.name!!.toLowerCase(Locale.ROOT)
+                                .contains(charSearch.toLowerCase(Locale.ROOT))
+                        )
+                            resultList.add(row)
+                    }
+                    locationFilterList = resultList
+                }
+                val filterResult = FilterResults()
+                filterResult.values = locationFilterList
+                return filterResult
+            }
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                locationFilterList = results?.values as ArrayList<Location>
+                notifyDataSetChanged()
+            }
+        }
+    }
 }
 
 
