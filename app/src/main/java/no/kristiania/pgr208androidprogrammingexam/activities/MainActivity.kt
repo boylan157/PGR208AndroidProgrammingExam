@@ -1,7 +1,8 @@
 package no.kristiania.pgr208androidprogrammingexam.activities
 
+import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
+import android.widget.ImageView
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,10 +16,10 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 
 import kotlinx.android.synthetic.main.activity_main.*
-import no.kristiania.pgr208androidprogrammingexam.LocationDatabaseHelper
+import no.kristiania.pgr208androidprogrammingexam.database.LocationDatabaseHelper
 import no.kristiania.pgr208androidprogrammingexam.R
 import no.kristiania.pgr208androidprogrammingexam.adapters.LocationListAdapter
-import no.kristiania.pgr208androidprogrammingexam.model.Location
+import no.kristiania.pgr208androidprogrammingexam.database.model.Location
 import org.json.JSONException
 import org.json.JSONObject
 import kotlin.collections.ArrayList
@@ -55,13 +56,16 @@ class MainActivity : AppCompatActivity() {
         testList = dbHandler!!.readLocations()
 
 
-        //Makes sure fetchjson only will be called once
+
+        //Uncomment this if u need to load in the data
+        // this part of the code is redundant but i keep it so you can see
         if(testList.isNullOrEmpty()) {
             fetchJson(url)
         }
 
 
-        // Inserting locations
+
+        // Inserting locations from database into list
         locationList = dbHandler!!.readLocations()
 
         location_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -78,6 +82,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         locationAdapter = LocationListAdapter(locationList!!, this)
         layoutManager = LinearLayoutManager(this)
         // setting up list/recyclerView
@@ -85,7 +90,6 @@ class MainActivity : AppCompatActivity() {
         recyclerViewListId.adapter = locationAdapter
 
         locationAdapter!!.notifyDataSetChanged()
-
 
 
 

@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_location_details.*
 import no.kristiania.pgr208androidprogrammingexam.R
 import org.json.JSONException
 
-class LocationDetails : AppCompatActivity() {
+class LocationDetailsActivity : AppCompatActivity() {
 
     // Declaration
     var volleyRequest: RequestQueue? = null
@@ -64,7 +64,7 @@ class LocationDetails : AppCompatActivity() {
                         //removing html tags
                         comment = Html.fromHtml(comment).toString()
                         if(comment.isEmpty()){
-                            commentText.text = "No comment available"
+                            commentText.text = "No comment found"
                         } else {
                             commentText.text = comment
                         }

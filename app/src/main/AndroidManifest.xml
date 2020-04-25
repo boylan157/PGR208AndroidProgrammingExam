@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name="no.kristiania.pgr208androidprogrammingexam.activities.GoogleMapsActivity" />
-        <activity android:name="no.kristiania.pgr208androidprogrammingexam.activities.LocationDetails" />
+        <activity android:name="no.kristiania.pgr208androidprogrammingexam.activities.LocationDetailsActivity" />
         <activity android:name="no.kristiania.pgr208androidprogrammingexam.activities.MainActivity" />
         <activity
-            android:name="no.kristiania.pgr208androidprogrammingexam.activities.SplashScreen"
+            android:name="no.kristiania.pgr208androidprogrammingexam.activities.SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

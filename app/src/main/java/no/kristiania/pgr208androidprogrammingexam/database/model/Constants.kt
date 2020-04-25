@@ -1,4 +1,6 @@
-package no.kristiania.pgr208androidprogrammingexam.model
+package no.kristiania.pgr208androidprogrammingexam.database.model
+
+// Constants used in database
 
 val DATABASE_VERSION: Int = 1
 val DATABASE_NAME: String = "location.db"

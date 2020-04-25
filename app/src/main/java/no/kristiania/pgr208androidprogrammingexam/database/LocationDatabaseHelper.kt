@@ -1,11 +1,11 @@
-package no.kristiania.pgr208androidprogrammingexam
+package no.kristiania.pgr208androidprogrammingexam.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import no.kristiania.pgr208androidprogrammingexam.model.*
+import no.kristiania.pgr208androidprogrammingexam.database.model.*
 
 class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -45,7 +45,7 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
         db.close()
     }
 
-    //READ
+    //READ    // this part is not being used but added for CRUD principle
     fun readALocation(id: Long): Location {
         var db: SQLiteDatabase = writableDatabase
 
@@ -107,7 +107,7 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
         return list
     }
 
-    //UPDATE
+    //UPDATE  // this part is not being used but added for CRUD principle
 
     fun updateLocation(location: Location): Int{
         var db: SQLiteDatabase = writableDatabase
@@ -122,7 +122,7 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
         return db.update(TABLE_NAME, values, "$KEY_ID=?", arrayOf(location.id.toString()))
     }
 
-    //DELETE
+    //DELETE // this part is not being used but added for CRUD principle
 
     fun deleteLocation(location: Location){
         var db: SQLiteDatabase = writableDatabase
@@ -131,6 +131,8 @@ class LocationDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABA
         db.close()
     }
 
+
+    // I was gonna use this from something, but i forgot what. dont hurt to have tho
 
     fun getLocationsCount(): Int{
         var db: SQLiteDatabase = readableDatabase

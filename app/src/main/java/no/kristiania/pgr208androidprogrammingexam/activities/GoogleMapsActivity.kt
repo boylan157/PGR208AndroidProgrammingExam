@@ -11,12 +11,14 @@ import no.kristiania.pgr208androidprogrammingexam.R
 class GoogleMapsActivity : AppCompatActivity() {
 
 
+    // Alot of code here taken from https://www.youtube.com/watch?v=suwq7Nta3oM with some changes
+
     lateinit var mapFragment: SupportMapFragment
     lateinit var googleMap: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_page4)
+        setContentView(R.layout.activity_google_maps)
 
         // Getting data
         var extras = intent.extras
@@ -30,7 +32,7 @@ class GoogleMapsActivity : AppCompatActivity() {
             googleMap = it
 
             //setting where location is and adding marker
-            val location = LatLng(latitude,longitude)
+            val location = LatLng(latitude, longitude)
             googleMap.addMarker(MarkerOptions().position(location))
 
             // making zoom animation

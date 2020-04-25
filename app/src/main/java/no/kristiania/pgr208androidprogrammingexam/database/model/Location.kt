@@ -1,17 +1,8 @@
-package no.kristiania.pgr208androidprogrammingexam.model
+package no.kristiania.pgr208androidprogrammingexam.database.model
 
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+// Model class for database
 
-
-class Location(
-   /* val id: String,
-    val name: String,
-    val longitude: Double,
-    val latitude: Double,
-    val detailsLink: String*/
-){
+class Location(){
     var id: String? = null
     var name: String? = null
     var longitude: Double? = null

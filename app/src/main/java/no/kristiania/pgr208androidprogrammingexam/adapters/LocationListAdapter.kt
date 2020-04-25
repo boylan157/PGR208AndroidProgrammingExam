@@ -11,11 +11,10 @@ import android.widget.Filterable
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.analytics.FirebaseAnalytics
 import no.kristiania.pgr208androidprogrammingexam.R
-import no.kristiania.pgr208androidprogrammingexam.activities.LocationDetails
+import no.kristiania.pgr208androidprogrammingexam.activities.LocationDetailsActivity
 import no.kristiania.pgr208androidprogrammingexam.activities.GoogleMapsActivity
-import no.kristiania.pgr208androidprogrammingexam.model.Location
+import no.kristiania.pgr208androidprogrammingexam.database.model.Location
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -60,7 +59,7 @@ class LocationListAdapter(private val locationList: ArrayList<Location>,
 
             // Adding link to LocationDetails page here and sending data
             card.setOnClickListener{
-                var intent = Intent(context, LocationDetails::class.java)
+                var intent = Intent(context, LocationDetailsActivity::class.java)
                 intent.putExtra("name", location.name)
                 intent.putExtra("link", location.detailsLink)
                 intent.putExtra("longitude", location.longitude)
@@ -82,6 +81,7 @@ class LocationListAdapter(private val locationList: ArrayList<Location>,
 
     }
 
+    // code source for this and most of search function https://johncodeos.com/how-to-add-search-in-recyclerview-using-kotlin/ with some changes
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
