@@ -90,9 +90,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViewListId.adapter = locationAdapter
 
         locationAdapter!!.notifyDataSetChanged()
-
-
-
+        locationList = dbHandler!!.readLocations()
     }
 
 
